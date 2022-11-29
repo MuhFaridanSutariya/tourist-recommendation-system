@@ -61,7 +61,7 @@ Dataset wisata pulau jawa pada dataset *tourism_with_id.csv*:
 
 ### Data Loading:
 
-#### Content-based filtering
+### Content-based filtering
 
 Langkah pertama import *library* yang dibutuhkan untuk kasus kali ini:
 
