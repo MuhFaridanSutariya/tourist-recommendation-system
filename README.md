@@ -59,8 +59,6 @@ Dataset wisata pulau jawa pada dataset *tourism_with_id.csv*:
 - Lat: Latitude tempat wisata tersebut.	
 - Long: Longitude tempat wisata tersebut.
 
-### Data Loading:
-
 ### Content-based filtering
 
 Langkah pertama import *library* yang dibutuhkan untuk kasus kali ini:
