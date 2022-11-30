@@ -5,7 +5,7 @@ Gambar 1. Candi Borobudur yogyakarta
 
 ## Proyek overview
 
-Pulau Jawa merupakan pulau dengan tempat wisata yang cukup populer dikunjungi oleh wisatawan lokan maupun internasional. sistem rekomendasi ini memberikan rekomendasi tempat wisata berdasarkan preference pengguna lain yang mungkin memiliki selera seperti pengguna tersebut sehingga dengan sistem ini diharapkan pengguna dapat termudahkan untuk berkunjung ke tempat wisata di pulau jawa.
+Pulau Jawa merupakan pulau dengan tempat wisata yang cukup populer dikunjungi oleh wisatawan lokal maupun internasional. sistem rekomendasi ini memberikan rekomendasi tempat wisata berdasarkan preference pengguna lain yang mungkin memiliki selera seperti pengguna tersebut sehingga dengan sistem ini diharapkan pengguna dapat termudahkan untuk berkunjung ke tempat wisata di pulau jawa.
 
 Rekomendasi sistem ini dapat memudahkan user dalam memilih tempat wisata dari beberapa pilihan yang mungkin relevan dengan pengguna. Dengan termudahkannya pengguna dalam memilih tempat wisata dapat meningkatkan daya wisata ke orang banyak yang ingin mengunjungi pulau jawa. [(Ni Made Ernawati, N M Sudarmini and N M R Sukmawati, 2018)](https://www.researchgate.net/publication/322945292_Impacts_of_Tourism_in_Ubud_Bali_Indonesia_a_community-based_tourism_perspective)
  
