@@ -59,7 +59,7 @@ Dataset wisata pulau jawa pada dataset *tourism_with_id.csv*:
 - Lat: Latitude tempat wisata tersebut.	
 - Long: Longitude tempat wisata tersebut.
 
-### Content-based filtering
+## Content-based filtering
 
 Langkah pertama import *library* yang dibutuhkan untuk kasus kali ini:
 
@@ -76,7 +76,7 @@ Selanjutnya membaca dataset dan menampilkan 3 data random:
 
 > Dataset ini terdiri dari 1012 data dan 6 kolom.
 
-*Exploratory data analysis* atau sering disingkat EDA merupakan proses investigasi awal pada data untuk menganalisis karakteristik, menemukan pola, anomali, dan memeriksa asumsi pada data. Teknik ini biasanya menggunakan bantuan statistik dan representasi grafis atau visualisasi.
+
 
 
 | # 	| Column               	| Non-Null Count 	| Dtype   	|
@@ -98,42 +98,7 @@ Gambar 2. Distribusi 5 lokasi dengan hotel terbanyak
 
 Pada dataset ini Kuta dan ubud menjadi kota dengan hotel terbanyak diikuti oleh kota seminyak, legian dan sanur.
 
-|       	| Original price 	| Price after discount 	|   Rating 	|
-|------:	|---------------:	|---------------------:	|---------:	|
-| count 	|       876.0000 	|             876.0000 	| 876.0000 	|
-|  mean 	|   1923463.9555 	|         1280057.5194 	|   8.4323 	|
-|  std  	|   3979703.4323 	|         2986544.9362 	|   0.5145 	|
-|  min  	|     63333.0000 	|           47500.0000 	|   5.6000 	|
-|  25%  	|    380000.0000 	|          250000.0000 	|   8.2000 	|
-|  50%  	|    838052.0000 	|          549999.0000 	|   8.5000 	|
-|  75%  	|   1942893.7500 	|         1262362.5000 	|   8.8000 	|
-|  max  	|  60980499.0000 	|        49394204.0000 	|   9.7000 	|
-
-- Dapat dilihat bahwa rating hotel terendah yaitu 5.6 dan tertinggi 9.7.
-- Dapat dilihat bahwa rata-rata biaya /malam menyentuh hampir 2 juta dan yang tertingginya yaitu 6 juta.
-- Dapat dilihat bahwa biaya termurah setelah diberikan diskon yaitu 470k dan yang tertinggi 4.9 juta
-
-### Exploratory Exploratory Data Analysis - Menangani Missing Value:
-
-|                      	| Total 	| Percentage of Missing Values 	|
-|---------------------:	|------:	|-----------------------------:	|
-|        Rating        	|   136 	|                      13.4387 	|
-|      Hotel Name      	|     0 	|                       0.0000 	|
-|    Original price    	|     0 	|                       0.0000 	|
-| Price after discount 	|     0 	|                       0.0000 	|
-|          Tax         	|     0 	|                       0.0000 	|
-|       location       	|     0 	|                       0.0000 	|
-
-> Missing value pada fitur rating dapat dihapus karena hal tersebut adalah noise didalam dataset.
-
-## Data Preparation
-
-### Feature Selection
-*Feature selection* adalah proses mengurangi jumlah fitur atau variabel input dengan memilih fitur-fitur yang dianggap paling relevan terhadap model.
-
-- menghapus kolom *Tax* karena hanya memiliki satu nilai saja sehingga tidak berpengaruh pada score yang dihasilkan
-
-### Data Cleasing
+#### Data Cleasing
 
 Karena fitur price pada dataset masih dalam bentuk tipe object maka kita dapat melakukan konversi ke tipe numeric untuk memudahkan dilakukannya analisis. Sebelum itu harus menghilangkan karakter *Rp* dan titik, jika tidak maka akan terjadi *error* pada saat melakukan konversi tipe data. 
 
@@ -170,6 +135,42 @@ Melihat dan menghapus data duplikat yang terdapat pada dataset
 | 26 	|         Sebuluh Sunset Hill Penida 	|        1403100 	|               841860 	| 9.5000 	|   NusaPenidaBali 	|        False 	|
 | 27 	|         Sebuluh Sunset Hill Penida 	|        1403100 	|               841860 	| 9.5000 	|   NusaPenidaBali 	|         True 	|
 
+Melihat statistika deskripsi:
+
+|       	| Original price 	| Price after discount 	|   Rating 	|
+|------:	|---------------:	|---------------------:	|---------:	|
+| count 	|       876.0000 	|             876.0000 	| 876.0000 	|
+|  mean 	|   1923463.9555 	|         1280057.5194 	|   8.4323 	|
+|  std  	|   3979703.4323 	|         2986544.9362 	|   0.5145 	|
+|  min  	|     63333.0000 	|           47500.0000 	|   5.6000 	|
+|  25%  	|    380000.0000 	|          250000.0000 	|   8.2000 	|
+|  50%  	|    838052.0000 	|          549999.0000 	|   8.5000 	|
+|  75%  	|   1942893.7500 	|         1262362.5000 	|   8.8000 	|
+|  max  	|  60980499.0000 	|        49394204.0000 	|   9.7000 	|
+
+- Dapat dilihat bahwa rating hotel terendah yaitu 5.6 dan tertinggi 9.7.
+- Dapat dilihat bahwa rata-rata biaya /malam menyentuh hampir 2 juta dan yang tertingginya yaitu 6 juta.
+- Dapat dilihat bahwa biaya termurah setelah diberikan diskon yaitu 470k dan yang tertinggi 4.9 juta
+
+### Exploratory Exploratory Data Analysis - Data Cleasing:
+
+|                      	| Total 	| Percentage of Missing Values 	|
+|---------------------:	|------:	|-----------------------------:	|
+|        Rating        	|   136 	|                      13.4387 	|
+|      Hotel Name      	|     0 	|                       0.0000 	|
+|    Original price    	|     0 	|                       0.0000 	|
+| Price after discount 	|     0 	|                       0.0000 	|
+|          Tax         	|     0 	|                       0.0000 	|
+|       location       	|     0 	|                       0.0000 	|
+
+> Missing value pada fitur rating dapat dihapus karena hal tersebut adalah noise didalam dataset.
+
+## Data Preparation
+
+### Feature Selection
+*Feature selection* adalah proses mengurangi jumlah fitur atau variabel input dengan memilih fitur-fitur yang dianggap paling relevan terhadap model.
+
+- menghapus kolom *Tax* karena hanya memiliki satu nilai saja sehingga tidak berpengaruh pada score yang dihasilkan
 
 
 ## Modeling
@@ -265,7 +266,7 @@ Recall = \frac{5}{5} = 1.00
 Dari hasil perhitungan diatas sistem rekomendasi yang telah dibuat mencapai score 1.00 atau sempurna berhasil memberikan rekomendasi yang relevan kepada pengguna.
 
 
-#### Collaborative filtering
+## Collaborative filtering
 
 #### tourism_rating.csv
 
@@ -276,6 +277,7 @@ Langkah pertama import *library* yang dibutuhkan untuk kasus kali ini:
 ### Exploratory Data Analysis - Deskripsi Variabel:
 
 Selanjutnya membaca dataset dan menampilkan 3 data random:
+
 |      	| User_Id 	| Place_Id 	| Place_Ratings 	|
 |-----:	|--------:	|---------:	|--------------:	|
 | 2296 	|      71 	|      320 	|             1 	|
@@ -283,6 +285,7 @@ Selanjutnya membaca dataset dan menampilkan 3 data random:
 |  62  	|       3 	|      310 	|             3 	|
 
 > Dataset ini terdiri dari 10000 data dan 3 kolom.
+
 
 | # 	| Column        	| Non-Null Count 	| Dtype 	|
 |---	|---------------	|----------------	|-------	|
@@ -293,6 +296,7 @@ Selanjutnya membaca dataset dan menampilkan 3 data random:
 Seluruh fitur pada dataset ini adalah integer atau numerik.
 
 Dataset ini memiiliki total 300 pengguna berbeda dan total 437 tempat wisata berbeda
+
 
 |       	|      User_Id 	|     Place_Id 	| Place_Ratings 	|
 |------:	|-------------:	|-------------:	|--------------:	|
@@ -379,64 +383,74 @@ Berikut adalah kategori tempat wisata bersarkan kota asalnya:
 - Dapat dilihat juga bahwa biaya masuk tempat wisata tersebut memiliki range harga sekitar 0 - 900k.
 - Untuk kolom Unnamed: 11 dan Unnamed: 12 adalah kolom noise yang akan dibuang saat fase *data cleasing* 
 
-### Exploratory Exploratory Data Analysis - Menangani Missing Value:
+### Exploratory Exploratory Data Analysis - Data Cleansing:
 
-|                      	| Total 	| Percentage of Missing Values 	|
-|---------------------:	|------:	|-----------------------------:	|
-|        Rating        	|   136 	|                      13.4387 	|
-|      Hotel Name      	|     0 	|                       0.0000 	|
-|    Original price    	|     0 	|                       0.0000 	|
-| Price after discount 	|     0 	|                       0.0000 	|
-|          Tax         	|     0 	|                       0.0000 	|
-|       location       	|     0 	|                       0.0000 	|
+#### tourism_rating.csv
 
-> Missing value pada fitur rating dapat dihapus karena hal tersebut adalah noise didalam dataset.
+Melihat *missing value* pada dataset:
+
+|         Kolom 	| Total 	| Percentage of Missing Values 	|
+|--------------:	|------:	|-----------------------------:	|
+|    User_Id    	|     0 	|                          0.0 	|
+|    Place_Id   	|     0 	|                          0.0 	|
+| Place_Ratings 	|     0 	|                          0.0 	|
+
+> Tidak ada nilai yang kosong pada dataset ini.
+
+> Tidak ada data duplikat pada datatet
+
+#### tourism_with_id.csv
+
+|        Kolom 	| Total 	| Percentage of Missing Values 	|
+|-------------:	|------:	|-----------------------------:	|
+|  Unnamed: 11 	|   437 	|                   100.000000 	|
+| Time_Minutes 	|   232 	|                    53.089245 	|
+|   Place_Id   	|     0 	|                     0.000000 	|
+|  Place_Name  	|     0 	|                     0.000000 	|
+|  Description 	|     0 	|                     0.000000 	|
+|   Category   	|     0 	|                     0.000000 	|
+|     City     	|     0 	|                     0.000000 	|
+|     Price    	|     0 	|                     0.000000 	|
+|    Rating    	|     0 	|                     0.000000 	|
+|  Coordinate  	|     0 	|                     0.000000 	|
+|      Lat     	|     0 	|                     0.000000 	|
+|     Long     	|     0 	|                     0.000000 	|
+|  Unnamed: 12 	|     0 	|                     0.000000 	|
+
+> *Missing value* yang terjadi pada dataset dapat dihapus dengan menghapus kolomnya langsung pada feature selection.
+
+#### Feature Selection
+*Feature selection* adalah proses mengurangi jumlah fitur atau variabel input dengan memilih fitur-fitur yang dianggap paling relevan terhadap model.
+
+- menghapus kolom Coordinate, Lat, Long, Unnamed: 11, Unnamed: 12, Time_Minutes, Rating dan Description karena tidak berguna dan dapat mengganggu pada saat dilakukan training.
+
+Setelah semua data telah dilakukan pembersihan maka dapat digabung menjadi satu dataframe dan hasilnya akan seperti ini:
+
+| index 	| User_Id 	| Place_Id 	| Place_Ratings 	|      Place_Name 	| Category 	|       City 	| Price 	|
+|------:	|--------:	|---------:	|--------------:	|----------------:	|---------:	|-----------:	|------:	|
+|   0   	|       1 	|      179 	|           3.0 	| Candi Ratu Boko 	|   Budaya 	| Yogyakarta 	| 75000 	|
+|   1   	|      22 	|      179 	|           4.0 	| Candi Ratu Boko 	|   Budaya 	| Yogyakarta 	| 75000 	|
+|   2   	|      40 	|      179 	|           3.0 	| Candi Ratu Boko 	|   Budaya 	| Yogyakarta 	| 75000 	|
+|   3   	|      49 	|      179 	|           5.0 	| Candi Ratu Boko 	|   Budaya 	| Yogyakarta 	| 75000 	|
+|   4   	|      74 	|      179 	|           3.0 	| Candi Ratu Boko 	|   Budaya 	| Yogyakarta 	| 75000 	|
 
 ## Data Preparation
 
-### Feature Selection
-*Feature selection* adalah proses mengurangi jumlah fitur atau variabel input dengan memilih fitur-fitur yang dianggap paling relevan terhadap model.
+Melakukan *Encode* valua pada kolom *User_Id* dan *Place_Id* kedalam angka integer dan hasilnya akan seperti ini:
 
-- menghapus kolom *Tax* karena hanya memiliki satu nilai saja sehingga tidak berpengaruh pada score yang dihasilkan
+| index 	| User_Id 	| Place_Id 	| Place_Ratings 	|      Place_Name 	| Category 	|       City 	| Price 	| user 	| place 	|
+|------:	|--------:	|---------:	|--------------:	|----------------:	|---------:	|-----------:	|------:	|-----:	|------:	|
+|   0   	|       1 	|      179 	|           3.0 	| Candi Ratu Boko 	|   Budaya 	| Yogyakarta 	| 75000 	|    0 	|     0 	|
+|   1   	|      22 	|      179 	|           4.0 	| Candi Ratu Boko 	|   Budaya 	| Yogyakarta 	| 75000 	|    1 	|     0 	|
+|   2   	|      40 	|      179 	|           3.0 	| Candi Ratu Boko 	|   Budaya 	| Yogyakarta 	| 75000 	|    2 	|     0 	|
+|   3   	|      49 	|      179 	|           5.0 	| Candi Ratu Boko 	|   Budaya 	| Yogyakarta 	| 75000 	|    3 	|     0 	|
+|   4   	|      74 	|      179 	|           3.0 	| Candi Ratu Boko 	|   Budaya 	| Yogyakarta 	| 75000 	|    4 	|     0 	|
 
-### Data Cleasing
+Setelah berhasil melakukan *encode* pada fitur *User_Id* dan *Place_Id* maka langkah terakhir pada fase preprocessing yaitu pembagian untuk data training dan data testing.
 
-Karena fitur price pada dataset masih dalam bentuk tipe object maka kita dapat melakukan konversi ke tipe numeric untuk memudahkan dilakukannya analisis. Sebelum itu harus menghilangkan karakter *Rp* dan titik, jika tidak maka akan terjadi *error* pada saat melakukan konversi tipe data. 
+Kolom yang akan digunakan sebagai independen variabel adalah fitur *User_Id* dan *Place_Id* lalu untuk fitur dependen yaitu *Place_Ratings*.
 
-Melihat dan menghapus data duplikat yang terdapat pada dataset
-
-|    	|                         Hotel Name 	| Original price 	| Price after discount 	| Rating 	|         location 	| is_duplicate 	|
-|---:	|-----------------------------------:	|---------------:	|---------------------:	|-------:	|-----------------:	|-------------:	|
-|  0 	|           Bumi Linggah Villas Bali 	|        1845375 	|               830419 	| 8.8000 	|     SukawatiBali 	|        False 	|
-|  1 	|           Bumi Linggah Villas Bali 	|        1845375 	|               830419 	| 8.8000 	|     SukawatiBali 	|         True 	|
-|  2 	|                        Dee Mansion 	|         358938 	|               183058 	| 8.1000 	| WestDenpasarBali 	|        False 	|
-|  3 	|                        Dee Mansion 	|         358938 	|               183058 	| 8.1000 	| WestDenpasarBali 	|         True 	|
-|  4 	| Fourteen Roses Boutique Hotel Kuta 	|         810000 	|               518400 	| 8.1000 	|       LegianBali 	|        False 	|
-|  5 	| Fourteen Roses Boutique Hotel Kuta 	|         810000 	|               518400 	| 8.1000 	|       LegianBali 	|         True 	|
-|  6 	|            Jasmine Inn Nusa Penida 	|         226667 	|               170000 	| 8.6000 	|   NusaPenidaBali 	|        False 	|
-|  7 	|            Jasmine Inn Nusa Penida 	|         226667 	|               170000 	| 8.6000 	|   NusaPenidaBali 	|         True 	|
-|  8 	|                The Kryamaha Villas 	|        2903987 	|              1732499 	| 8.8000 	|     TanahLotBali 	|        False 	|
-|  9 	|                The Kryamaha Villas 	|        2903987 	|              1732499 	| 8.8000 	|     TanahLotBali 	|         True 	|
-| 10 	|  Ozora Tiying Tutul Hostel @Canggu 	|         120000 	|                90000 	| 8.1000 	|       CangguBali 	|        False 	|
-| 11 	|  Ozora Tiying Tutul Hostel @Canggu 	|         120000 	|                90000 	| 8.1000 	|       CangguBali 	|         True 	|
-| 12 	|                   Samsara Homestay 	|         237039 	|               177779 	| 9.2000 	|    KintamaniBali 	|        False 	|
-| 13 	|                   Samsara Homestay 	|         237039 	|               177779 	| 9.2000 	|    KintamaniBali 	|         True 	|
-| 14 	|                  Sanur Guest House 	|         339999 	|               254999 	| 7.9000 	|        SanurBali 	|        False 	|
-| 15 	|                  Sanur Guest House 	|         339999 	|               254999 	| 7.9000 	|        SanurBali 	|         True 	|
-| 16 	|                 Argasoka Bungalows 	|         316667 	|               237500 	| 8.8000 	| MonkeyForestBali 	|        False 	|
-| 17 	|                 Argasoka Bungalows 	|         316667 	|               237500 	| 8.8000 	| MonkeyForestBali 	|         True 	|
-| 18 	|      OYO 3062 Pondok Wisata Dewata 	|         188561 	|               118793 	| 7.1000 	|    BatubulanBali 	|        False 	|
-| 19 	|      OYO 3062 Pondok Wisata Dewata 	|         188561 	|               118793 	| 7.1000 	|    BatubulanBali 	|         True 	|
-| 20 	|        White Sandy Beach Menjangan 	|         380000 	|               285000 	| 8.5000 	|    MenjanganBali 	|        False 	|
-| 21 	|        White Sandy Beach Menjangan 	|         380000 	|               285000 	| 8.5000 	|    MenjanganBali 	|         True 	|
-| 22 	|                   Scuba Tribe Bali 	|         380000 	|               239400 	| 9.3000 	|     TulambenBali 	|        False 	|
-| 23 	|                   Scuba Tribe Bali 	|         380000 	|               239400 	| 9.3000 	|     TulambenBali 	|         True 	|
-| 24 	|               The Calna Villa Bali 	|        2254792 	|              1826382 	| 8.8000 	|         KutaBali 	|        False 	|
-| 25 	|               The Calna Villa Bali 	|        2254792 	|              1826382 	| 8.8000 	|         KutaBali 	|         True 	|
-| 26 	|         Sebuluh Sunset Hill Penida 	|        1403100 	|               841860 	| 9.5000 	|   NusaPenidaBali 	|        False 	|
-| 27 	|         Sebuluh Sunset Hill Penida 	|        1403100 	|               841860 	| 9.5000 	|   NusaPenidaBali 	|         True 	|
-
-
+> Data untuk training sebesar 80% dan data untuk testing sebesar 20%.
 
 ## Modeling
 
