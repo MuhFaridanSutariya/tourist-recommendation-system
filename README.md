@@ -65,7 +65,9 @@ Langkah pertama import *library* yang dibutuhkan untuk kasus kali ini:
 
 *Library* yang akan diimport adalah *library* yang berhubungan untuk memanipulasi data, data visualisasi, *preprocessing*, teknik fitur ekstraksi, teknik mencari hubungan antara fitur, menampilkan seluruh angka yang berada dibelakang koma dan mematikan warning yang didapat setelah menjalankan code. 
 
-Selanjutnya membaca dataset dan menampilkan 5 data teratas:
+### Exploratory Data Analysis - Deskripsi Variabel:
+
+Selanjutnya membaca dataset dan menampilkan 3 data random:
 |     	|                Hotel Name 	| Original price 	| Price after discount 	|                Tax 	| Rating 	|         location 	|
 |----:	|--------------------------:	|---------------:	|---------------------:	|-------------------:	|-------:	|-----------------:	|
 | 359 	|     Adi Dharma Hotel Kuta 	|   Rp 1.020.000 	|           Rp 663.000 	| Inclusive of taxes 	|    8.5 	|       Kuta, Bali 	|
@@ -74,7 +76,6 @@ Selanjutnya membaca dataset dan menampilkan 5 data teratas:
 
 > Dataset ini terdiri dari 1012 data dan 6 kolom.
 
-### Exploratory Data Analysis - Deskripsi Variabel:
 *Exploratory data analysis* atau sering disingkat EDA merupakan proses investigasi awal pada data untuk menganalisis karakteristik, menemukan pola, anomali, dan memeriksa asumsi pada data. Teknik ini biasanya menggunakan bantuan statistik dan representasi grafis atau visualisasi.
 
 
@@ -266,56 +267,117 @@ Dari hasil perhitungan diatas sistem rekomendasi yang telah dibuat mencapai scor
 
 #### Collaborative filtering
 
+#### tourism_rating.csv
+
 Langkah pertama import *library* yang dibutuhkan untuk kasus kali ini:
 
 *Library* yang akan diimport adalah *library* yang berhubungan untuk memanipulasi data, perhitungan matriks, data visualisasi, *preprocessing*, model *machine learning* dan mematikan warning yang didapat setelah menjalankan code. 
 
-Selanjutnya membaca dataset dan menampilkan 5 data teratas:
-|     	|                Hotel Name 	| Original price 	| Price after discount 	|                Tax 	| Rating 	|         location 	|
-|----:	|--------------------------:	|---------------:	|---------------------:	|-------------------:	|-------:	|-----------------:	|
-| 359 	|     Adi Dharma Hotel Kuta 	|   Rp 1.020.000 	|           Rp 663.000 	| Inclusive of taxes 	|    8.5 	|       Kuta, Bali 	|
-| 562 	| Beluran Serene Guesthouse 	|     Rp 399.999 	|           Rp 299.999 	| Inclusive of taxes 	|    8.6 	| Kerambitan, Bali 	|
-| 442 	|              Agata Villas 	|   Rp 9.161.796 	|         Rp 3.226.541 	| Inclusive of taxes 	|    7.3 	|   Seminyak, Bali 	|
-
-> Dataset ini terdiri dari 1012 data dan 6 kolom.
-
 ### Exploratory Data Analysis - Deskripsi Variabel:
-*Exploratory data analysis* atau sering disingkat EDA merupakan proses investigasi awal pada data untuk menganalisis karakteristik, menemukan pola, anomali, dan memeriksa asumsi pada data. Teknik ini biasanya menggunakan bantuan statistik dan representasi grafis atau visualisasi.
 
+Selanjutnya membaca dataset dan menampilkan 3 data random:
+|      	| User_Id 	| Place_Id 	| Place_Ratings 	|
+|-----:	|--------:	|---------:	|--------------:	|
+| 2296 	|      71 	|      320 	|             1 	|
+| 5277 	|     160 	|      292 	|             2 	|
+|  62  	|       3 	|      310 	|             3 	|
 
-| # 	| Column               	| Non-Null Count 	| Dtype   	|
-|---	|----------------------	|----------------	|---------	|
-| 0 	| Hotel Name           	| 1012 non-null  	| object  	|
-| 1 	| Original price       	| 1012 non-null  	| object  	|
-| 2 	| Price after discount 	| 1012 non-null  	| object  	|
-| 3 	| Tax                  	| 1012 non-null  	| object  	|
-| 4 	| Rating               	| 876 non-null   	| float64 	|
-| 5 	| location             	| 1012 non-null  	| object  	|
+> Dataset ini terdiri dari 10000 data dan 3 kolom.
 
-Fitur pada dataset terdiri dari 5 kolom tipe object dan 1 kolom bertipe float.
+| # 	| Column        	| Non-Null Count 	| Dtype 	|
+|---	|---------------	|----------------	|-------	|
+| 0 	| User_Id       	| 10000 non-null 	| int64 	|
+| 1 	| Place_Id      	| 10000 non-null 	| int64 	|
+| 2 	| Place_Ratings 	| 10000 non-null 	| int64 	|
 
-Pada dataset ini total hotel yang tersedia berjumlah 990 Hotel unik dengan total lokasi 84 lokasi unik.
+Seluruh fitur pada dataset ini adalah integer atau numerik.
 
-![1](https://user-images.githubusercontent.com/88027268/204459950-eec18f4b-3e0f-4c96-9edc-5d1402403c2b.png)
+Dataset ini memiiliki total 300 pengguna berbeda dan total 437 tempat wisata berbeda
 
-Gambar 2. Distribusi 5 lokasi dengan hotel terbanyak
+|       	|      User_Id 	|     Place_Id 	| Place_Ratings 	|
+|------:	|-------------:	|-------------:	|--------------:	|
+| count 	| 10000.000000 	| 10000.000000 	|  10000.000000 	|
+|  mean 	|   151.292700 	|   219.416400 	|      3.066500 	|
+|  std  	|    86.137374 	|   126.228335 	|      1.379952 	|
+|  min  	|     1.000000 	|     1.000000 	|      1.000000 	|
+|  25%  	|    77.000000 	|   108.750000 	|      2.000000 	|
+|  50%  	|   151.000000 	|   220.000000 	|      3.000000 	|
+|  75%  	|   226.000000 	|   329.000000 	|      4.000000 	|
+|  max  	|   300.000000 	|   437.000000 	|      5.000000 	|
 
-Pada dataset ini Kuta dan ubud menjadi kota dengan hotel terbanyak diikuti oleh kota seminyak, legian dan sanur.
+- Dapat dilihat bahwa rata-rata rating untuk tempat wisata sekitar 3.
+- Dapat dilihat juga bahwa rating terendah untuk tempat wisata yaitu 1 dan rating tertinggi yaitu 5.
 
-|       	| Original price 	| Price after discount 	|   Rating 	|
-|------:	|---------------:	|---------------------:	|---------:	|
-| count 	|       876.0000 	|             876.0000 	| 876.0000 	|
-|  mean 	|   1923463.9555 	|         1280057.5194 	|   8.4323 	|
-|  std  	|   3979703.4323 	|         2986544.9362 	|   0.5145 	|
-|  min  	|     63333.0000 	|           47500.0000 	|   5.6000 	|
-|  25%  	|    380000.0000 	|          250000.0000 	|   8.2000 	|
-|  50%  	|    838052.0000 	|          549999.0000 	|   8.5000 	|
-|  75%  	|   1942893.7500 	|         1262362.5000 	|   8.8000 	|
-|  max  	|  60980499.0000 	|        49394204.0000 	|   9.7000 	|
+#### tourism_with_id.csv
 
-- Dapat dilihat bahwa rating hotel terendah yaitu 5.6 dan tertinggi 9.7.
-- Dapat dilihat bahwa rata-rata biaya /malam menyentuh hampir 2 juta dan yang tertingginya yaitu 6 juta.
-- Dapat dilihat bahwa biaya termurah setelah diberikan diskon yaitu 470k dan yang tertinggi 4.9 juta
+Membaca dataset dan menampilkan 3 data random:
+
+|     	| Place_Id 	|                        Place_Name 	|                                       Description 	|      Category 	|     City 	| Price 	| Rating 	| Time_Minutes 	|                                      Coordinate 	|      Lat 	|       Long 	| Unnamed: 11 	| Unnamed: 12 	|
+|----:	|---------:	|----------------------------------:	|--------------------------------------------------:	|--------------:	|---------:	|------:	|-------:	|-------------:	|------------------------------------------------:	|---------:	|-----------:	|------------:	|------------:	|
+|  48 	|       49 	|             Galeri Indonesia Kaya 	| Galeri Indonesia Kaya (disingkat GIK) adalah r... 	|        Budaya 	|  Jakarta 	|     0 	|    4.8 	|         90.0 	|         {'lat': -6.1948499, 'lng': 106.8200607} 	| -6.19485 	| 106.820061 	|         NaN 	|          49 	|
+| 279 	|      280 	| Gereja Tiberias Indonesia Bandung 	| Gereja Tiberias Indonesia (GTI), atau Tiberias... 	| Tempat Ibadah 	|  Bandung 	|     0 	|    4.9 	|          NaN 	|         {'lat': -6.9347698, 'lng': 107.6253513} 	| -6.93477 	| 107.625351 	|         NaN 	|         280 	|
+| 435 	|      436 	|      Taman Flora Bratang Surabaya 	| Taman Flora adalah salah satu taman kota di Su... 	| Taman Hiburan 	| Surabaya 	|     0 	|    4.6 	|          NaN 	| {'lat': -7.294330299999999, 'lng': 112.7617534} 	| -7.29433 	| 112.761753 	|         NaN 	|         436 	|
+
+> Dataset ini terdiri dari 437 data dan 13 kolom.
+
+| #  	| Column       	| Non-Null Count 	| Dtype   	|
+|----	|--------------	|----------------	|---------	|
+| 0  	| Place_Id     	| 437 non-null   	| int64   	|
+| 1  	| Place_Name   	| 437 non-null   	| object  	|
+| 2  	| Description  	| 437 non-null   	| object  	|
+| 3  	| Category     	| 437 non-null   	| object  	|
+| 4  	| City         	| 437 non-null   	| object  	|
+| 5  	| Price        	| 437 non-null   	| int64   	|
+| 6  	| Rating       	| 437 non-null   	| float64 	|
+| 7  	| Time_Minutes 	| 205 non-null   	| float64 	|
+| 8  	| Coordinate   	| 437 non-null   	| object  	|
+| 9  	| Lat          	| 437 non-null   	| float64 	|
+| 10 	| Long         	| 437 non-null   	| float64 	|
+| 11 	| Unnamed: 11  	| 0 non-null     	| float64 	|
+| 12 	| Unnamed: 12  	| 437 non-null   	| int64   	|
+
+Fitur pada dataset ini terdiri dari 8 tipe numeric dan 5 tipe object.
+
+Dataset ini memiiliki total 437 lokasi berbeda dan tempat wisata tersebut tersebar kedalam beberapa kota, sebagai berikut:
+
+| Nama kota  	| Total 	|
+|------------	|-------	|
+| Yogyakarta 	| 126   	|
+| Bandung    	| 124   	|
+| Jakarta    	| 84    	|
+| Semarang   	| 57    	|
+| Surabaya   	| 46    	|
+
+Dalam bentuk visualisasi data:
+
+![2](https://user-images.githubusercontent.com/88027268/204716628-0d46241b-702a-41bf-a029-82e04745cc48.png)
+
+Yogyakarta dan bandung menjadi kota dengan tempat wisata terbanyak pada dataset sekitar 124-126 tempat wisata lalu disusul kota Jakarta, semarang dan surabaya.
+
+Berikut adalah kategori tempat wisata bersarkan kota asalnya:
+
+![3](https://user-images.githubusercontent.com/88027268/204716844-b27280f7-3250-44a1-ac6b-b944b3d840bf.png)
+
+- Dari visualisasi diatas Bandung adalah kota yang memiliki tempat wisata dengan kateogri cagar alam dan taman hiburan terbanyak dikota tersebut.
+- Kota Jakarta memiliki tempat wisata dengan kateogri budaya dan taman hiburan terbanyak dikota tersebut.
+- Kota Semarang memiliki sedikit atau bahkan tidak memiliki tempat wisata perbelanjaan dan cenderung memiliki banyak kategori tempat wisata dikota tersebut adalah Cagar alam, Budaya dan taman hiburan.
+- Kota Surabaya memiliki tempat wisata dengan kategori taman hiburan dan budaya terbanyak dikota tersebut.
+- Kota Yogyakarta memiliki data yang cukup signifikan pada kategori tempat wisata bahari dibanding kota lainnya.
+
+|       	|   Place_Id 	|         Price 	|     Rating 	| Time_Minutes 	|        Lat 	|       Long 	| Unnamed: 11 	| Unnamed: 12 	|
+|------:	|-----------:	|--------------:	|-----------:	|-------------:	|-----------:	|-----------:	|------------:	|------------:	|
+| count 	| 437.000000 	|    437.000000 	| 437.000000 	|   205.000000 	| 437.000000 	| 437.000000 	|         0.0 	|  437.000000 	|
+|  mean 	| 219.000000 	|  24652.173913 	|   4.442792 	|    82.609756 	|  -7.095438 	| 109.160142 	|         NaN 	|  219.000000 	|
+|  std  	| 126.295289 	|  66446.374709 	|   0.208587 	|    52.872339 	|   0.727241 	|   1.962848 	|         NaN 	|  126.295289 	|
+|  min  	|   1.000000 	|      0.000000 	|   3.400000 	|    10.000000 	|  -8.197894 	| 103.931398 	|         NaN 	|    1.000000 	|
+|  25%  	| 110.000000 	|      0.000000 	|   4.300000 	|    45.000000 	|  -7.749590 	| 107.578369 	|         NaN 	|  110.000000 	|
+|  50%  	| 219.000000 	|   5000.000000 	|   4.500000 	|    60.000000 	|  -7.020524 	| 110.237468 	|         NaN 	|  219.000000 	|
+|  75%  	| 328.000000 	|  20000.000000 	|   4.600000 	|   120.000000 	|  -6.829411 	| 110.431869 	|         NaN 	|  328.000000 	|
+|  max  	| 437.000000 	| 900000.000000 	|   5.000000 	|   360.000000 	|   1.078880 	| 112.821662 	|         NaN 	|  437.000000 	|
+
+- Dapat dilihat bahwa rata-rata rating yang diberikan oleh pengguna ke tempat wisata tersebut yaitu 4.4 dan memberikan rating terendah yaitu 3.4 dan tertinggi yaitu 5.0.
+- Dapat dilihat juga bahwa biaya masuk tempat wisata tersebut memiliki range harga sekitar 0 - 900k.
+- Untuk kolom Unnamed: 11 dan Unnamed: 12 adalah kolom noise yang akan dibuang saat fase *data cleasing* 
 
 ### Exploratory Exploratory Data Analysis - Menangani Missing Value:
 
