@@ -77,8 +77,6 @@ Selanjutnya membaca dataset dan menampilkan 3 data random:
 > Dataset ini terdiri dari 1012 data dan 6 kolom.
 
 
-
-
 | # 	| Column               	| Non-Null Count 	| Dtype   	|
 |---	|----------------------	|----------------	|---------	|
 | 0 	| Hotel Name           	| 1012 non-null  	| object  	|
@@ -87,6 +85,7 @@ Selanjutnya membaca dataset dan menampilkan 3 data random:
 | 3 	| Tax                  	| 1012 non-null  	| object  	|
 | 4 	| Rating               	| 876 non-null   	| float64 	|
 | 5 	| location             	| 1012 non-null  	| object  	|
+
 
 Fitur pada dataset terdiri dari 5 kolom tipe object dan 1 kolom bertipe float.
 
@@ -209,6 +208,7 @@ Hasil diatas menunjukkan hotel dengan lokasi yang benar akan diberi nilai 1 dan 
 
 Setelah melakukan pemberian bobot pada tiap fitur maka akan dilanjut ke tahap mengidentifikasi korelasi antara hotel dan lokasinya. untuk melakukan hal tersebut dapat menghitung derajat kesamaan atau *similarity degree* antar lokasi menggunakan teknik *cosine similarity*.
 
+
 |                          Hotel Name 	| OYO 1654 Maha Bharata Kuta Inn 	| Famous Hotel Kuta 	| Kejora Suites 	| Matta Lodge Bali 	| OYO 3244 Grand Chandra Hotel 	|
 |------------------------------------:	|-------------------------------:	|------------------:	|--------------:	|-----------------:	|-----------------------------:	|
 |                          Hotel Name 	|                                	|                   	|               	|                  	|                              	|
@@ -223,12 +223,15 @@ Setelah melakukan pemberian bobot pada tiap fitur maka akan dilanjut ke tahap me
 |            Ila Villa Ubud           	|                         0.0000 	|            0.0000 	|        0.0000 	|           0.0000 	|                       0.0000 	|
 | Aloft Bali Seminyak- CHSE Certified 	|                         0.0000 	|            0.0000 	|        0.0000 	|           0.0000 	|                       0.0000 	|
 
+
 Hasil dari perhitungan derajat kesamaan akan menghasilkan dimensi (862, 862) merupakan ukuran matriks similarity dari dataset dengan kata lain mesin berhasil mengidentifikasi 862 Nama Hotel tingkat kesamaan (masing-masing dalam sumbu X dan y). *Hotel Kumala Pantai* dengan *OYO 1654 Maha Bharata Kuta Inn* memiliki nilai 1 yang berarti terdapat kemiripan lokasi. Untuk memastikan bahwa kedua hotel tersebut memiliki kesamaaan, sebagai berikut:
+
 
 |     	|                     Hotel Name 	| Original price 	| Price after discount 	| Rating 	|   location 	|
 |----:	|-------------------------------:	|---------------:	|---------------------:	|-------:	|-----------:	|
 | 704 	|            Hotel Kumala Pantai 	|        1457592 	|              1000585 	| 8.7000 	| LegianBali 	|
 | 273 	| OYO 1654 Maha Bharata Kuta Inn 	|         357452 	|               178726 	| 7.8000 	| LegianBali 	|
+
 
 ## Evaluation
 Setelah semua tahap telah terselesaikan maka akan tiba saatnya membuat sebuah fungsi yang dimana pada fungsi tersebut akan mengembalikan 5 data hotel teratas berdasarkan lokasi dari data histori pengguna. Berikut adalah rekomendasi misalnya user sebelumnya mengunjungi Hotel *Matahari Bungalow*:
@@ -356,11 +359,15 @@ Dalam bentuk visualisasi data:
 
 ![2](https://user-images.githubusercontent.com/88027268/204716628-0d46241b-702a-41bf-a029-82e04745cc48.png)
 
+Gambar 3. Distribusi lima kota dengan tempat wisatanya
+
 Yogyakarta dan bandung menjadi kota dengan tempat wisata terbanyak pada dataset sekitar 124-126 tempat wisata lalu disusul kota Jakarta, semarang dan surabaya.
 
 Berikut adalah kategori tempat wisata bersarkan kota asalnya:
 
 ![3](https://user-images.githubusercontent.com/88027268/204716844-b27280f7-3250-44a1-ac6b-b944b3d840bf.png)
+
+Gambar 4. Distribusi enam kategori tempat wisata berdasarkan kotanya
 
 - Dari visualisasi diatas Bandung adalah kota yang memiliki tempat wisata dengan kateogri cagar alam dan taman hiburan terbanyak dikota tersebut.
 - Kota Jakarta memiliki tempat wisata dengan kateogri budaya dan taman hiburan terbanyak dikota tersebut.
