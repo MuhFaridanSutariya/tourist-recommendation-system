@@ -1,4 +1,4 @@
-# Wisata sistem rekomendasi 
+# Sistem rekomendasi 
 
 ![tobias-winkelmann-367873](https://user-images.githubusercontent.com/88027268/204447678-71ea3773-9831-4b05-a974-d6862a35c256.jpg)
 Gambar 1. Illustrasi bali
