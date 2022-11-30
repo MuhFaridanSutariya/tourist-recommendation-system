@@ -461,13 +461,29 @@ Selanjutnya membuat proses compile terhadap model dengan kriteria menggunakan lo
 Formula *MeanSquaredeError*:
 
 ```math
+\frac{1}{n}\sum_{i=1}^{n}(\hat{y} - y)^2 
+```
+
+penjelasan:
+- Σ adalah total dari perhitungan nilai yang ada didalam kurung
+- y hat adalah nilai yang diprediksi oleh model
+- y adalah nilai yang sebenarnya
+- n adalah *sample size*
+
+Penjelasan *Adagrad*: Algoritme ini secara adaptif menskalakan *learning_rate* untuk setiap dimensi.
+
+Formula *MeanSquaredeError*:
+
+```math
 \sqrt{\sum_{i=1}^{n} \frac{(\hat{y} - y)^2}{n}}
 ```
 
-
-
-
-
+penjelasan:
+- √ adalah akar dari nilai yang ada didalam akar tersebut
+- Σ adalah total dari perhitungan nilai yang ada didalam kurung
+- y hat adalah nilai yang diprediksi oleh model
+- y adalah nilai yang sebenarnya
+- n adalah *sample size*
 
 ## Evaluation
 Setelah semua tahap telah terselesaikan maka akan tiba saatnya membuat sebuah fungsi yang dimana pada fungsi tersebut akan mengembalikan 5 data hotel teratas berdasarkan lokasi dari data histori pengguna. Berikut adalah rekomendasi misalnya user sebelumnya mengunjungi Hotel *Matahari Bungalow*:
