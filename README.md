@@ -485,43 +485,41 @@ penjelasan:
 - y adalah nilai yang sebenarnya
 - n adalah *sample size*
 
+Langkah terakhir fase ini adalah melakukan training pada data train dan data test dengan epochs yaitu 10 dan batch_size = 24.
+
 ## Evaluation
-Setelah semua tahap telah terselesaikan maka akan tiba saatnya membuat sebuah fungsi yang dimana pada fungsi tersebut akan mengembalikan 5 data hotel teratas berdasarkan lokasi dari data histori pengguna. Berikut adalah rekomendasi misalnya user sebelumnya mengunjungi Hotel *Matahari Bungalow*:
 
-|   	|                   Hotel Name 	|   location 	|
-|--:	|-----------------------------:	|-----------:	|
-| 0 	|               Ossotel Legian 	| LegianBali 	|
-| 1 	|               The Legian 777 	| LegianBali 	|
-| 2 	|             Nakula Stay Kuta 	| LegianBali 	|
-| 3 	| City Garden Bali Dwipa Hotel 	| LegianBali 	|
-| 4 	|               Cempaka Losmen 	| LegianBali 	|
+Setelah melakukan modeling dapat melakukan visualisasi score dari metrik yang telah dihitung pada fase training.
 
-Data Hotel *Matahari Bungalow*:
+> Model berhasil mendapatkan *RMSE* pada data training yaitu 0.3446 dan pada validasi yaitu 0.3434. 
 
-|     	|        Hotel Name 	| Original price 	| Price after discount 	| Rating 	|   location 	|
-|----:	|------------------:	|---------------:	|---------------------:	|-------:	|-----------:	|
-| 656 	| Matahari Bungalow 	|         622618 	|               290768 	| 8.0000 	| LegianBali 	|
+Hasil tersebut cukup bagus untuk sistem rekomendasi namun model tersebut masih dapat dilakukan *improve* dengan melakukan beberapa cara salah satunya adalah Hyperparameter tuning.
 
-Berdasarkan tabel diatas kita dapat melihat bahwa seluruh rekomendasi yang diberikan oleh model adalah yang berlokasi di Legian, bali dan lokasi tersebut sesuai dengan data lokasi hotel *Matahari Bungalow* yang kita asumsikan sebagai data hotel yang dikunjungi sebelumnya oleh pengguna.
+Setelah semua tahap telah terselesaikan maka akan tiba saatnya membuat *testing* rekomendasi untuk salah satu pengguna. misalkan untuk pengguna dengan *User_Id* 201. Berikut adalah rekomendasi yang akan diberikan:
 
-Disini akan menggunakan *metric precision* sebagai acuan karena harapannya sistem rekomendasi dapat memberikan beberapa rekomendasi yang benar-benar relevan dengan data hotel yang sebelumnya telah dikunjungi oleh pengguna
-
-```math
-Recall = \frac{Total-rekomendasi-yang-relevan}{Total-rekomendasi-yang-diberikan}
-```
-
-Penjelasan dari formula diatas:
-- Total-rekomendasi-yang-relevan berarti sistem rekomendasi berhasil memberikan rekomendasi yang relevan dengan data hotel yang sebelumnya dikunjungi oleh pengguna.
-- Total-rekomendasi-yang-diberikan berarti jumlah rekomendasi yang telah diberikan oleh sistem kepada pengguna tanpa memikirkan apakah rekomendasi itu relevan atau tidak. 
-
-```math
-Recall = \frac{5}{5} = 1.00
-```
-
-Dari hasil perhitungan diatas sistem rekomendasi yang telah dibuat mencapai score 1.00 atau sempurna berhasil memberikan rekomendasi yang relevan kepada pengguna.
-
-
-
+| Showing recommendations for users: 201     	|
+|--------------------------------------------	|
+| ===========================                	|
+| Place with high ratings from user          	|
+| --------------------------------           	|
+| Hutan Pinus Kayon : Semarang               	|
+| Curug Aseupan : Bandung                    	|
+| Kebun Binatang Bandung : Bandung           	|
+| Monumen Serangan Umum 1 Maret : Yogyakarta 	|
+| Glamping Lakeside Rancabali : Bandung      	|
+| --------------------------------           	|
+| Top 10 place recommendation                	|
+| --------------------------------           	|
+| Panama Park 825 : Bandung                  	|
+| Bumi Perkemahan Batu Kuda : Bandung        	|
+| Museum Barli : Bandung                     	|
+| Sudut Pandang Bandung : Bandung            	|
+| Situ Patenggang : Bandung                  	|
+| Teras Cikapundung BBWS : Bandung           	|
+| Taman Vanda : Bandung                      	|
+| Bukit Bintang : Bandung                    	|
+| Museum Gedung Sate : Bandung               	|
+| Monumen Bandung Lautan Api : Bandung       	|
 
 
 Kesimpulan: Projek ini berhasil mengetahui bahwa fitur dari *Humadity* dan *CNT* adalah fitur yang paling berkorelasi dengan *Fire Alarm*. Menarik bahwa hanya dengan algoritma *machine learning* klasik sudah dapat memberikan *score* yang sangat tinggi. Dapat mencoba menggunakan *neural network* untuk hasil yang lebih baik lagi karena algoritma *machine learning* klasik seperti *logistic regression* memiliki keterbatasan dan *neural network* dapat menutupi dari keterbatasan itu.
