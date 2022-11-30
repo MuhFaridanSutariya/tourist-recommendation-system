@@ -93,7 +93,7 @@ Pada dataset ini total hotel yang tersedia berjumlah 990 Hotel unik dengan total
 
 ![1](https://user-images.githubusercontent.com/88027268/204459950-eec18f4b-3e0f-4c96-9edc-5d1402403c2b.png)
 
-Gambar 2. Distribusi 5 lokasi dengan hotel terbanyak
+Gambar 2. Distribusi lima lokasi dengan hotel terbanyak
 
 Pada dataset ini Kuta dan ubud menjadi kota dengan hotel terbanyak diikuti oleh kota seminyak, legian dan sanur.
 
