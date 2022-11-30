@@ -1,7 +1,7 @@
 # Sistem rekomendasi 
 
-![tobias-winkelmann-367873](https://user-images.githubusercontent.com/88027268/204447678-71ea3773-9831-4b05-a974-d6862a35c256.jpg)
-Gambar 1. Illustrasi bali
+![steffen-b-28joUilHigc-unsplash](https://user-images.githubusercontent.com/88027268/204917765-94b162b6-d8f8-4023-a30c-2a54cc659cc2.jpg)
+Gambar 1. Candi Borobudur yogyakarta
 
 ## Proyek overview
 
@@ -137,7 +137,7 @@ Dalam bentuk visualisasi data:
 
 ![2](https://user-images.githubusercontent.com/88027268/204716628-0d46241b-702a-41bf-a029-82e04745cc48.png)
 
-Gambar 3. Distribusi lima kota dengan tempat wisatanya
+Gambar 2. Distribusi lima kota dengan tempat wisatanya
 
 Yogyakarta dan bandung menjadi kota dengan tempat wisata terbanyak pada dataset sekitar 124-126 tempat wisata lalu disusul kota Jakarta, semarang dan surabaya.
 
@@ -145,7 +145,7 @@ Berikut adalah kategori tempat wisata bersarkan kota asalnya:
 
 ![3](https://user-images.githubusercontent.com/88027268/204716844-b27280f7-3250-44a1-ac6b-b944b3d840bf.png)
 
-Gambar 4. Distribusi enam kategori tempat wisata berdasarkan kotanya
+Gambar 3. Distribusi enam kategori tempat wisata berdasarkan kotanya
 
 - Dari visualisasi diatas Bandung adalah kota yang memiliki tempat wisata dengan kateogri cagar alam dan taman hiburan terbanyak dikota tersebut.
 - Kota Jakarta memiliki tempat wisata dengan kateogri budaya dan taman hiburan terbanyak dikota tersebut.
