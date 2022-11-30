@@ -491,9 +491,7 @@ Langkah terakhir fase ini adalah melakukan training pada data train dan data tes
 
 Setelah melakukan modeling dapat melakukan visualisasi score dari metrik yang telah dihitung pada fase training.
 
-> Model berhasil mendapatkan *RMSE* pada data training yaitu 0.3446 dan pada validasi yaitu 0.3434. 
-
-Hasil tersebut cukup bagus untuk sistem rekomendasi namun model tersebut masih dapat dilakukan *improve* dengan melakukan beberapa cara salah satunya adalah Hyperparameter tuning.
+> Model berhasil mendapatkan *RMSE* pada data training yaitu 0.3446 dan pada validasi yaitu 0.3434. Hasil tersebut cukup bagus untuk sistem rekomendasi.
 
 Setelah semua tahap telah terselesaikan maka akan tiba saatnya membuat *testing* rekomendasi untuk salah satu pengguna. misalkan untuk pengguna dengan *User_Id* 201. Berikut adalah rekomendasi yang akan diberikan:
 
@@ -522,8 +520,8 @@ Setelah semua tahap telah terselesaikan maka akan tiba saatnya membuat *testing*
 | Monumen Bandung Lautan Api : Bandung       	|
 
 
-Kesimpulan: Projek ini berhasil mengetahui bahwa fitur dari *Humadity* dan *CNT* adalah fitur yang paling berkorelasi dengan *Fire Alarm*. Menarik bahwa hanya dengan algoritma *machine learning* klasik sudah dapat memberikan *score* yang sangat tinggi. Dapat mencoba menggunakan *neural network* untuk hasil yang lebih baik lagi karena algoritma *machine learning* klasik seperti *logistic regression* memiliki keterbatasan dan *neural network* dapat menutupi dari keterbatasan itu.
+Kesimpulan: Proyek ini berhasil mencapai goals yang diinginkan yaitu memberikan rekomendasi hotel dan tempat wisata yang relevan kepada pengguna dengan teknik *content-based filtering* dan *collaborative filtering* yang hasilnya sangat baik. untuk hasil yang didapat dengan teknik *collaborative filtering* masih dapat untuk dilakukan improve dengan berbagai cara yaitu dengan melakukan hyperparameter tuning.
 
-Reference: [(Donglin Jin, Shengzhe and Hakil Kim, 2015)](https://www.researchgate.net/publication/308815224_Robust_fire_detection_using_logistic_regression_and_randomness_testing_for_real-time_video_surveillance)
+Reference: [(Charilaos Zisopoulos, Savvas Karagiannidis, Georgios Demirtsoglou and Stefanos Antaris, 2008)](https://www.researchgate.net/publication/236895069_Content-Based_Recommendation_Systems), [(Hael Al-bashiri, Mansoor Abdullateef Abdulgabber, Awanis Romli and Fadhl Hujainah, 2017)](https://www.researchgate.net/publication/320761149_Collaborative_Filtering_Recommender_System_Overview_and_Challenges#:~:text=This%20paper%20is%20to%20present%20an%20overview%20of,help%20users%20to%20overcome%20the%20information%20overload%20issue.), 
 
 **---END---**
