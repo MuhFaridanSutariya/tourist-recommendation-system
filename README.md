@@ -454,60 +454,20 @@ Kolom yang akan digunakan sebagai independen variabel adalah fitur *User_Id* dan
 
 ## Modeling
 
-Melakukan pemberian bobot pada fitur lokasi didataset menggunakan TF-IDF Vectorizer. lalu melihat beberapa hasil dari perhitungan idf, seperti berikut:
+Setelah melakukan data preprocessing maka akan dilanjut ketahap modeling menggunakan tensorflow. Ditahap ini model akan menghitung kecocokan antara pengguna dan tempat wisata dengan teknik embedding. Proses pertama yang akan dilakukan adalah melakukan embedding terhadap data user dan tempat wisata. lalu melakukan proses operasi perkalian dot product antara embedding user dan tempat wisata. Disetiap perhitungan embedding akan ditambahkan juga bias untuk data user dan tempat wisata. Hasil akhir dari model ini adalah 0 dan 1 dikarenakan menggunakan fungsi aktivasi sigmoid yang mana fungsi aktivasi tersebut akan menghasilkan dua nilai saja yaitu 0 dan 1.
 
-|    	| fitur            	|
-|---:	|------------------	|
-| 37 	| nusaceninganbali 	|
-| 11 	| eastdenpasarbali 	|
-| 62 	|          spabali 	|
-| 31 	|       mengwibali 	|
-| 22 	|    klungkungbali 	|
+Selanjutnya membuat proses compile terhadap model dengan kriteria menggunakan loss fungsi yaitu *MeanSquaredError*, optimizer yaitu *Adagrad* dengan *learning_rate* 0.01 dan metrik evaluasi yaitu *RMSE*.
 
-Selanjutnya setelah dilakukan perhitungan idf dapat dilanjutkan ke proses transformasi ke dalam bentuk matriks
-> Matriks ini memiliki total 862 data dan 83 lokasi
+Formula *MeanSquaredeError*:
 
-Hasil matriks jika dalam bentuk dataframe:
-
-|                                   	| singarajabali 	| balianbali 	| klungkungbali 	| nusaduabeachhotel 	| kerobokanbali 	| padangbaibali 	| lovinabali 	| tabanankotabali 	| nusapenidabali 	| kemenuhbali 	|
-|----------------------------------:	|--------------:	|-----------:	|--------------:	|------------------:	|--------------:	|--------------:	|-----------:	|----------------:	|---------------:	|------------:	|
-|                        Hotel Name 	|               	|            	|               	|                   	|               	|               	|            	|                 	|                	|             	|
-|          Lloyd's Inn Bali         	|        0.0000 	|     0.0000 	|        0.0000 	|            0.0000 	|        0.0000 	|        0.0000 	|     0.0000 	|          0.0000 	|         0.0000 	|      0.0000 	|
-|         Asher Bali Transit        	|        0.0000 	|     0.0000 	|        0.0000 	|            0.0000 	|        0.0000 	|        0.0000 	|     0.0000 	|          0.0000 	|         0.0000 	|      0.0000 	|
-|   diAtas by Art Cafe Bumbu Bali   	|        0.0000 	|     0.0000 	|        0.0000 	|            0.0000 	|        0.0000 	|        0.0000 	|     0.0000 	|          0.0000 	|         0.0000 	|      0.0000 	|
-|     Taman Surgawi Resort & Spa    	|        0.0000 	|     0.0000 	|        0.0000 	|            0.0000 	|        0.0000 	|        0.0000 	|     0.0000 	|          0.0000 	|         0.0000 	|      0.0000 	|
-|             Hotel Ratu            	|        0.0000 	|     0.0000 	|        0.0000 	|            0.0000 	|        0.0000 	|        0.0000 	|     0.0000 	|          0.0000 	|         0.0000 	|      0.0000 	|
-|        Ayola Bali Jimbaran        	|        0.0000 	|     0.0000 	|        0.0000 	|            0.0000 	|        0.0000 	|        0.0000 	|     0.0000 	|          0.0000 	|         0.0000 	|      0.0000 	|
-|        Kira Cottages Penida       	|        0.0000 	|     0.0000 	|        0.0000 	|            0.0000 	|        0.0000 	|        0.0000 	|     0.0000 	|          0.0000 	|         *1.0000* 	|      0.0000 	|
-| Green Palace Homestay Nusa Penida 	|        0.0000 	|     0.0000 	|        0.0000 	|            0.0000 	|        0.0000 	|        0.0000 	|     0.0000 	|          0.0000 	|         1.0000 	|      0.0000 	|
-|         Pradhana Residence        	|        0.0000 	|     0.0000 	|        0.0000 	|            0.0000 	|        0.0000 	|        0.0000 	|     0.0000 	|          0.0000 	|         0.0000 	|      0.0000 	|
-|         Darba Guest House         	|        0.0000 	|     0.0000 	|        0.0000 	|            0.0000 	|        0.0000 	|        0.0000 	|     0.0000 	|          0.0000 	|         0.0000 	|      0.0000 	|
+```math
+\sqrt{\sum_{i=1}^{n} \frac{(\hat{y} - y)^2}{n}}
+```
 
 
-Hasil diatas menunjukkan hotel dengan lokasi yang benar akan diberi nilai 1 dan hote yang tidak sesuai dengan lokasi akan diberi nilai 0. sehingga data Hotel *Kira Cottages Penida* berlokasi di Nusa Penida diberi nilai 1, Karena hotel tersebut memang berlokasi di Nusa Penida.
 
-Setelah melakukan pemberian bobot pada tiap fitur maka akan dilanjut ke tahap mengidentifikasi korelasi antara hotel dan lokasinya. untuk melakukan hal tersebut dapat menghitung derajat kesamaan atau *similarity degree* antar lokasi menggunakan teknik *cosine similarity*.
 
-|                          Hotel Name 	| OYO 1654 Maha Bharata Kuta Inn 	| Famous Hotel Kuta 	| Kejora Suites 	| Matta Lodge Bali 	| OYO 3244 Grand Chandra Hotel 	|
-|------------------------------------:	|-------------------------------:	|------------------:	|--------------:	|-----------------:	|-----------------------------:	|
-|                          Hotel Name 	|                                	|                   	|               	|                  	|                              	|
-|          Hilton Bali Resort         	|                         0.0000 	|            0.0000 	|        0.0000 	|           0.0000 	|                       0.0000 	|
-|     Samabe Bali Suites & Villas     	|                         0.0000 	|            0.0000 	|        0.0000 	|           0.0000 	|                       0.0000 	|
-|  Stark Boutique Hotel and Spa Bali  	|                         0.0000 	|            0.0000 	|        0.0000 	|           0.0000 	|                       0.0000 	|
-|         The Mulia - Nusa Dua        	|                         0.0000 	|            0.0000 	|        0.0000 	|           0.0000 	|                       0.0000 	|
-|         Respati Beach Hotel         	|                         0.0000 	|            0.0000 	|        1.0000 	|           0.0000 	|                       0.0000 	|
-|         Hotel Kumala Pantai         	|                         1.0000 	|            0.0000 	|        0.0000 	|           0.0000 	|                       0.0000 	|
-|     OYO 90547 Pondok Saren Anyar    	|                         0.0000 	|            0.0000 	|        0.0000 	|           0.0000 	|                       0.0000 	|
-|         Maha Rama Suite Amed        	|                         0.0000 	|            0.0000 	|        0.0000 	|           0.0000 	|                       0.0000 	|
-|            Ila Villa Ubud           	|                         0.0000 	|            0.0000 	|        0.0000 	|           0.0000 	|                       0.0000 	|
-| Aloft Bali Seminyak- CHSE Certified 	|                         0.0000 	|            0.0000 	|        0.0000 	|           0.0000 	|                       0.0000 	|
 
-Hasil dari perhitungan derajat kesamaan akan menghasilkan dimensi (862, 862) merupakan ukuran matriks similarity dari dataset dengan kata lain mesin berhasil mengidentifikasi 862 Nama Hotel tingkat kesamaan (masing-masing dalam sumbu X dan y). *Hotel Kumala Pantai* dengan *OYO 1654 Maha Bharata Kuta Inn* memiliki nilai 1 yang berarti terdapat kemiripan lokasi. Untuk memastikan bahwa kedua hotel tersebut memiliki kesamaaan, sebagai berikut:
-
-|     	|                     Hotel Name 	| Original price 	| Price after discount 	| Rating 	|   location 	|
-|----:	|-------------------------------:	|---------------:	|---------------------:	|-------:	|-----------:	|
-| 704 	|            Hotel Kumala Pantai 	|        1457592 	|              1000585 	| 8.7000 	| LegianBali 	|
-| 273 	| OYO 1654 Maha Bharata Kuta Inn 	|         357452 	|               178726 	| 7.8000 	| LegianBali 	|
 
 ## Evaluation
 Setelah semua tahap telah terselesaikan maka akan tiba saatnya membuat sebuah fungsi yang dimana pada fungsi tersebut akan mengembalikan 5 data hotel teratas berdasarkan lokasi dari data histori pengguna. Berikut adalah rekomendasi misalnya user sebelumnya mengunjungi Hotel *Matahari Bungalow*:
