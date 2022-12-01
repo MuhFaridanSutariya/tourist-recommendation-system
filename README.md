@@ -16,7 +16,7 @@ Bagian ini akan menjelaskan proses klarifikasi masalah.
 ### Problem Statements
 
 - Berdasarkan data mengenai daftar tempat wisata, bagaimana membuat sistem rekomendasi yang dipersonalisasi dengan teknik *content-based filtering*?
-- Apakah sistem rekomendasi ini dapat memudahkan pengguna dalam memilih tempat wisata yang paling relevan?
+- Apakah sistem rekomendasi ini dapat memudahkan pengguna dalam memilih tempat wisata yang paling relevan berdasarkan preference pengguna dengan teknik *collaborative filtering*?
 
 ### Goals
 
@@ -168,9 +168,9 @@ Gambar 3. Distribusi enam kategori tempat wisata berdasarkan kotanya
 - Dapat dilihat juga bahwa biaya masuk tempat wisata tersebut memiliki range harga sekitar 0 - 900k.
 - Untuk kolom Unnamed: 11 dan Unnamed: 12 adalah kolom noise yang akan dibuang saat fase *data cleasing* 
 
-## Content-based filtering
-
 ### Data Preparation
+
+## Content-based filtering
 
 Melihat *missing value* pada dataset:
 
@@ -197,94 +197,7 @@ Melihat *missing value* pada dataset:
 
 - menghapus kolom Coordinate, Lat, Long, Unnamed: 11, Unnamed: 12, Time_Minutes, Rating dan Description karena tidak berguna dan dapat mengganggu pada saat dilakukan training.
 
-## Modeling
-
-Melakukan pemberian bobot pada fitur lokasi didataset menggunakan TF-IDF Vectorizer pada *library* sklearn. 
-
-Selanjutnya setelah dilakukan perhitungan idf dapat dilanjutkan ke proses transformasi ke dalam bentuk matriks
-
-> Matriks ini memiliki total 437 data dan 5 kota
-
-Hasil matriks jika dalam bentuk dataframe:
-
-|              City   	| jakarta 	| surabaya 	| bandung 	| semarang 	| yogyakarta 	|
-|--------------------:	|--------:	|---------:	|--------:	|---------:	|-----------:	|
-|          Place_Name 	|         	|          	|         	|          	|            	|
-|       Goa Rong      	|     0.0 	|      0.0 	|     0.0 	|      1.0 	|        0.0 	|
-| Hutan Pinus Pengger 	|     0.0 	|      0.0 	|     0.0 	|      0.0 	|        1.0 	|
-|    Taman Begonia    	|     0.0 	|      0.0 	|     1.0 	|      0.0 	|        0.0 	|
-|      Pulau Pari     	|     1.0 	|      0.0 	|     0.0 	|      0.0 	|        0.0 	|
-|    Caringin Tilu    	|     0.0 	|      0.0 	|     1.0 	|      0.0 	|        0.0 	|
-|  The Lodge Maribaya 	|     0.0 	|      0.0 	|     1.0 	|      0.0 	|        0.0 	|
-| Wisata Kraton Jogja 	|     0.0 	|      0.0 	|     0.0 	|      0.0 	|        1.0 	|
-|    Curug Bugbrug    	|     0.0 	|      0.0 	|     1.0 	|      0.0 	|        0.0 	|
-|     Pantai Baron    	|     0.0 	|      0.0 	|     0.0 	|      0.0 	|        1.0 	|
-|   Pantai Nguluran   	|     0.0 	|      0.0 	|     0.0 	|      0.0 	|        1.0 	|
-
-Hasil diatas menunjukkan tempat wisata dengan lokasi yang benar akan diberi nilai 1 dan tempat wisata yang tidak sesuai dengan lokasi akan diberi nilai 0. sehingga data tempat wisata *Pulau Pari* Penida berlokasi di kota *Jakarta* diberi nilai 1, Karena hotel tersebut memang berlokasi di kota *Jakarta*.
-
-Setelah melakukan pemberian bobot pada tiap fitur maka akan dilanjut ke tahap mengidentifikasi korelasi antara tempat wisata dan kotanya. untuk melakukan hal tersebut dapat menghitung derajat kesamaan atau similarity degree antar lokasi menggunakan teknik cosine similarity. Berikut adalah hasil perhitungan korelasinya:
-
-|                   Place_Name 	| Curug Cilengkrang 	| Rumah Sipitung 	| Bandros City Tour 	| Pelabuhan Marina 	| Bukit Wisata Pulepayung 	|
-|-----------------------------:	|------------------:	|---------------:	|------------------:	|-----------------:	|------------------------:	|
-|                   Place_Name 	|                   	|                	|                   	|                  	|                         	|
-|       Kawasan Malioboro      	|               0.0 	|            0.0 	|               0.0 	|              0.0 	|                     1.0 	|
-|         Pantai Timang        	|               0.0 	|            0.0 	|               0.0 	|              0.0 	|                     1.0 	|
-| Kauman Pakualaman Yogyakarta 	|               0.0 	|            0.0 	|               0.0 	|              0.0 	|                     1.0 	|
-|      Surabaya North Quay     	|               0.0 	|            0.0 	|               0.0 	|              0.0 	|                     0.0 	|
-|         Heha Sky View        	|               0.0 	|            0.0 	|               0.0 	|              0.0 	|                     1.0 	|
-|        Museum Perangko       	|               0.0 	|            1.0 	|               0.0 	|              1.0 	|                     0.0 	|
-|       Pantai Ngrenehan       	|               0.0 	|            0.0 	|               0.0 	|              0.0 	|                     1.0 	|
-|          Bukit Jamur         	|               1.0 	|            0.0 	|               1.0 	|              0.0 	|                     0.0 	|
-|        Pantai Ngandong       	|               0.0 	|            0.0 	|               0.0 	|              0.0 	|                     1.0 	|
-|   Taman Pelangi Yogyakarta   	|               0.0 	|            0.0 	|               0.0 	|              0.0 	|                     1.0 	|
-
-Hasil dari perhitungan derajat kesamaan akan menghasilkan dimensi (437, 437) merupakan ukuran matriks similarity dari dataset dengan kata lain mesin berhasil mengidentifikasi 437 tempat wisata yang sama (masing-masing dalam sumbu X dan y). Sebagai contoh *Bukit Jamur* dengan *Curug Cilengkrang* memiliki nilai 1 yang berarti terdapat kemiripan lokasi kota. Untuk memastikan bahwa kedua tempat wisata tersebut memiliki kesamaaan, sebagai berikut:
-
-|     	| Place_Id 	|        Place_Name 	|   Category 	|    City 	| Price 	|
-|----:	|---------:	|------------------:	|-----------:	|--------:	|------:	|
-| 321 	|      322 	|       Bukit Jamur 	| Cagar Alam 	| Bandung 	|     0 	|
-| 281 	|      282 	| Curug Cilengkrang 	| Cagar Alam 	| Bandung 	|  7500 	|
-
-## Evaluation
-
-Setelah semua tahap telah terselesaikan maka akan tiba saatnya membuat sebuah fungsi yang dimana pada fungsi tersebut akan mengembalikan 5 data tempat wisata teratas berdasarkan lokasi dari data histori pengguna. Berikut adalah rekomendasi misalnya pengguna sebelumnya mengunjungi *Surabaya North Quay*:
-
-| index 	|                                Place_Name 	|     City 	|
-|------:	|------------------------------------------:	|---------:	|
-|     0 	| Gereja Perawan Maria Tak Berdosa Surabaya 	| Surabaya 	|
-|     1 	|           Taman Ekspresi Dan Perpustakaan 	| Surabaya 	|
-|     2 	|                             Kenjeran Park 	| Surabaya 	|
-|     3 	|                      Kebun Bibit Wonorejo 	| Surabaya 	|
-|     4 	|             Museum TNI AL Loka Jala Crana 	| Surabaya 	|
-
-Data *Surabaya North Quay*:
-
-| index 	| Place_Id 	|          Place_Name 	|      Category 	|     City 	| Price 	|
-|------:	|---------:	|--------------------:	|--------------:	|---------:	|------:	|
-|  404  	|      405 	| Surabaya North Quay 	| Taman Hiburan 	| Surabaya 	| 50000 	|
-
-Berdasarkan tabel diatas kita dapat melihat bahwa seluruh rekomendasi yang diberikan oleh model adalah yang berlokasi di kota *Surabaya* dan lokasi tersebut sesuai dengan data lokasi tempat wisata *Surabaya North Quay* yang kita asumsikan sebagai data tempat wisata yang dikunjungi sebelumnya oleh pengguna.
-
-Disini akan menggunakan metric precision sebagai acuan karena harapannya sistem rekomendasi dapat memberikan beberapa rekomendasi yang benar-benar relevan dengan data tempat wisata yang sebelumnya telah dikunjungi oleh pengguna
-
-```math
-Recall = \frac{Total-rekomendasi-yang-relevan}{Total-rekomendasi-yang-diberikan}
-```
-
-Penjelasan dari formula diatas:
-- Total-rekomendasi-yang-relevan berarti sistem rekomendasi berhasil memberikan rekomendasi yang relevan dengan data tempat wisata yang sebelumnya dikunjungi oleh pengguna.
-- Total-rekomendasi-yang-diberikan berarti jumlah rekomendasi yang telah diberikan oleh sistem kepada pengguna tanpa memikirkan apakah rekomendasi itu relevan atau tidak. 
-
-```math
-Recall = \frac{5}{5} = 1.00
-```
-
-Dari hasil perhitungan diatas sistem rekomendasi yang telah dibuat mencapai score 1.00 atau sempurna berhasil memberikan rekomendasi yang relevan kepada pengguna.
-
 ## Collaborative filtering
-
-### Data Preparation
 
 #### tourism_rating.csv
 
@@ -351,7 +264,116 @@ Kolom yang akan digunakan sebagai independen variabel adalah fitur *User_Id* dan
 
 > Data untuk training sebesar 80% dan data untuk testing sebesar 20%.
 
-## Modeling
+## Modeling dan results
+
+### Content-based filtering
+
+*Content-based filtering* adalah sistem rekomendasi yang merekomendasikan item yang mirip dengan item yang disukai pengguna di masa lalu. Jenis sistem rekomendasi ini menggunakan informasi tentang item untuk mempelajari preferensi pelanggan. Misal, jika pengguna A menyukai film *Koala Kumal*, maka sistem dapat merekomendasikan film dengan genre yang sama atau aktor yang sama. Contoh lain, saat berbelanja di e-commerce, sistem akan merekomendasikan item yang sama dengan yang telah pengguna lihat atau beli.
+
+Kelebihan *content-based filtering*:
+- Tidak memerlukan data apa pun dari pengguna lain dan hal itu dapat memudahkan pembuat sistem rekomendasi berbasis konten
+- Model dapat mengetahui minat khusus dari pengguna sehingga model dapat merekomendasikan item yang sangat sedikit diminati pengguna lain
+- Rekomendasi yang diberikan kepada pengguna adalah item yang paling relevan dengan pengguna tersebut.
+
+Kekurangan *content-based filtering*:
+- Model hanya dapat sebatas merekomendasikan item yang pengguna minat saja sehingga model tidak dapat memperluas minat berdasarkan pengguna lain.
+- *Scalability*. Ketika terdapat item baru yang masuk kedalam daftar item maka harus diberi fitur yang digunakan sebagai acuan content based filtering agar model dapat merekomendasikan secara tepat
+- *New user*. ketika data disuatu *profil* tidak banyak dan lengkap maka rekomendasi yang akan dihasilkan akan tidak akurat atau relevan.
+
+Melakukan pemberian bobot pada fitur lokasi didataset menggunakan TF-IDF Vectorizer pada *library* sklearn. 
+
+Selanjutnya setelah dilakukan perhitungan idf dapat dilanjutkan ke proses transformasi ke dalam bentuk matriks
+
+> Matriks ini memiliki total 437 data dan 5 kota
+
+Hasil matriks jika dalam bentuk dataframe:
+
+|              City   	| jakarta 	| surabaya 	| bandung 	| semarang 	| yogyakarta 	|
+|--------------------:	|--------:	|---------:	|--------:	|---------:	|-----------:	|
+|          Place_Name 	|         	|          	|         	|          	|            	|
+|       Goa Rong      	|     0.0 	|      0.0 	|     0.0 	|      1.0 	|        0.0 	|
+| Hutan Pinus Pengger 	|     0.0 	|      0.0 	|     0.0 	|      0.0 	|        1.0 	|
+|    Taman Begonia    	|     0.0 	|      0.0 	|     1.0 	|      0.0 	|        0.0 	|
+|      Pulau Pari     	|     1.0 	|      0.0 	|     0.0 	|      0.0 	|        0.0 	|
+|    Caringin Tilu    	|     0.0 	|      0.0 	|     1.0 	|      0.0 	|        0.0 	|
+|  The Lodge Maribaya 	|     0.0 	|      0.0 	|     1.0 	|      0.0 	|        0.0 	|
+| Wisata Kraton Jogja 	|     0.0 	|      0.0 	|     0.0 	|      0.0 	|        1.0 	|
+|    Curug Bugbrug    	|     0.0 	|      0.0 	|     1.0 	|      0.0 	|        0.0 	|
+|     Pantai Baron    	|     0.0 	|      0.0 	|     0.0 	|      0.0 	|        1.0 	|
+|   Pantai Nguluran   	|     0.0 	|      0.0 	|     0.0 	|      0.0 	|        1.0 	|
+
+Hasil diatas menunjukkan tempat wisata dengan lokasi yang benar akan diberi nilai 1 dan tempat wisata yang tidak sesuai dengan lokasi akan diberi nilai 0. sehingga data tempat wisata *Pulau Pari* Penida berlokasi di kota *Jakarta* diberi nilai 1, Karena hotel tersebut memang berlokasi di kota *Jakarta*.
+
+Setelah melakukan pemberian bobot pada tiap fitur maka akan dilanjut ke tahap mengidentifikasi korelasi antara tempat wisata dan kotanya. untuk melakukan hal tersebut dapat menghitung derajat kesamaan atau similarity degree antar lokasi menggunakan teknik cosine similarity. Berikut adalah hasil perhitungan korelasinya:
+
+|                   Place_Name 	| Curug Cilengkrang 	| Rumah Sipitung 	| Bandros City Tour 	| Pelabuhan Marina 	| Bukit Wisata Pulepayung 	|
+|-----------------------------:	|------------------:	|---------------:	|------------------:	|-----------------:	|------------------------:	|
+|                   Place_Name 	|                   	|                	|                   	|                  	|                         	|
+|       Kawasan Malioboro      	|               0.0 	|            0.0 	|               0.0 	|              0.0 	|                     1.0 	|
+|         Pantai Timang        	|               0.0 	|            0.0 	|               0.0 	|              0.0 	|                     1.0 	|
+| Kauman Pakualaman Yogyakarta 	|               0.0 	|            0.0 	|               0.0 	|              0.0 	|                     1.0 	|
+|      Surabaya North Quay     	|               0.0 	|            0.0 	|               0.0 	|              0.0 	|                     0.0 	|
+|         Heha Sky View        	|               0.0 	|            0.0 	|               0.0 	|              0.0 	|                     1.0 	|
+|        Museum Perangko       	|               0.0 	|            1.0 	|               0.0 	|              1.0 	|                     0.0 	|
+|       Pantai Ngrenehan       	|               0.0 	|            0.0 	|               0.0 	|              0.0 	|                     1.0 	|
+|          Bukit Jamur         	|               1.0 	|            0.0 	|               1.0 	|              0.0 	|                     0.0 	|
+|        Pantai Ngandong       	|               0.0 	|            0.0 	|               0.0 	|              0.0 	|                     1.0 	|
+|   Taman Pelangi Yogyakarta   	|               0.0 	|            0.0 	|               0.0 	|              0.0 	|                     1.0 	|
+
+Hasil dari perhitungan derajat kesamaan akan menghasilkan dimensi (437, 437) merupakan ukuran matriks similarity dari dataset dengan kata lain mesin berhasil mengidentifikasi 437 tempat wisata yang sama (masing-masing dalam sumbu X dan y). Sebagai contoh *Bukit Jamur* dengan *Curug Cilengkrang* memiliki nilai 1 yang berarti terdapat kemiripan lokasi kota. Untuk memastikan bahwa kedua tempat wisata tersebut memiliki kesamaaan, sebagai berikut:
+
+|     	| Place_Id 	|        Place_Name 	|   Category 	|    City 	| Price 	|
+|----:	|---------:	|------------------:	|-----------:	|--------:	|------:	|
+| 321 	|      322 	|       Bukit Jamur 	| Cagar Alam 	| Bandung 	|     0 	|
+| 281 	|      282 	| Curug Cilengkrang 	| Cagar Alam 	| Bandung 	|  7500 	|
+
+Setelah semua tahap telah terselesaikan maka akan tiba saatnya membuat sebuah fungsi yang dimana pada fungsi tersebut akan mengembalikan 5 data tempat wisata teratas berdasarkan lokasi dari data histori pengguna. Berikut adalah rekomendasi misalnya pengguna sebelumnya mengunjungi *Surabaya North Quay*:
+
+| index 	|                                Place_Name 	|     City 	|
+|------:	|------------------------------------------:	|---------:	|
+|     0 	| Gereja Perawan Maria Tak Berdosa Surabaya 	| Surabaya 	|
+|     1 	|           Taman Ekspresi Dan Perpustakaan 	| Surabaya 	|
+|     2 	|                             Kenjeran Park 	| Surabaya 	|
+|     3 	|                      Kebun Bibit Wonorejo 	| Surabaya 	|
+|     4 	|             Museum TNI AL Loka Jala Crana 	| Surabaya 	|
+
+Data *Surabaya North Quay*:
+
+| index 	| Place_Id 	|          Place_Name 	|      Category 	|     City 	| Price 	|
+|------:	|---------:	|--------------------:	|--------------:	|---------:	|------:	|
+|  404  	|      405 	| Surabaya North Quay 	| Taman Hiburan 	| Surabaya 	| 50000 	|
+
+## Evaluation
+
+Berdasarkan rekomendasi pada tahap *modeling dan results* dapat dilihat bahwa seluruh rekomendasi yang diberikan oleh model adalah yang berlokasi di kota *Surabaya* dan lokasi tersebut sesuai dengan data lokasi tempat wisata *Surabaya North Quay* yang diasumsikan sebagai data tempat wisata yang dikunjungi sebelumnya oleh pengguna.
+
+Disini akan menggunakan metric precision sebagai acuan karena harapannya sistem rekomendasi dapat memberikan beberapa rekomendasi yang benar-benar relevan dengan data tempat wisata yang sebelumnya telah dikunjungi oleh pengguna
+
+```math
+Recall = \frac{Total-rekomendasi-yang-relevan}{Total-rekomendasi-yang-diberikan}
+```
+
+Penjelasan dari formula diatas:
+- Total-rekomendasi-yang-relevan berarti sistem rekomendasi berhasil memberikan rekomendasi yang relevan dengan data tempat wisata yang sebelumnya dikunjungi oleh pengguna.
+- Total-rekomendasi-yang-diberikan berarti jumlah rekomendasi yang telah diberikan oleh sistem kepada pengguna tanpa memikirkan apakah rekomendasi itu relevan atau tidak. 
+
+```math
+Recall = \frac{5}{5} = 1.00
+```
+
+Dari hasil perhitungan diatas sistem rekomendasi yang telah dibuat mencapai score 1.00 atau sempurna berhasil memberikan rekomendasi yang relevan kepada pengguna.
+
+### Collaborative filtering
+
+*Collaborative filtering* bekerja mengidentifikasi pola serupa dalam perilaku pelanggan dan merekomendasikan item yang telah berinteraksi dengan pelanggan serupa lainnya. jenis rekomendasi ini dibagi menjadi kedalam dua bagian yaitu: *model based* (metode berbasis model machine learning) dan *memory based* (metode berbasis memori).
+
+Kelebihan *Collaborative filtering*:
+- Tidak membutuhkan *domain knowledge* karena sistem yang akan mencari pola dari pengguna satu dengan pengguna lainnya berdasarkan kemiripan antar pengguna tersebut.
+- Sistem dapat menemukan minat atau kesukaan baru dari pengguna karena sistem dapat merekomendasikan item dari pengguna lain yang mungkin tidak pernah dilihat dan setelah dilihat pengguna tersebut menyukainya.
+
+Kekurangan *Collaborative filtering*:
+- Tidak dapat memberikan rekomendasi item baru jika belum dilakukan pelatihan ulang dengan menambahkan item baru tersebut kedalam fase pelatihan.
+- *Dataset* yang dibutuhkan cukup besar karena menggunakan *machine learning* atau bahkan *deep learning*
 
 Setelah melakukan data preprocessing maka akan dilanjut ketahap modeling menggunakan tensorflow. Ditahap ini model akan menghitung kecocokan antara pengguna dan tempat wisata dengan teknik embedding. Proses pertama yang akan dilakukan adalah melakukan embedding terhadap data user dan tempat wisata. lalu melakukan proses operasi perkalian dot product antara embedding user dan tempat wisata. Disetiap perhitungan embedding akan ditambahkan juga bias untuk data user dan tempat wisata. Hasil akhir dari model ini adalah 0 dan 1 dikarenakan menggunakan fungsi aktivasi sigmoid yang mana fungsi aktivasi tersebut akan menghasilkan dua nilai saja yaitu 0 dan 1.
 
@@ -386,12 +408,6 @@ penjelasan:
 
 Langkah terakhir fase ini adalah melakukan training pada data train dan data test dengan epochs yaitu 10 dan batch_size = 24.
 
-## Evaluation
-
-Setelah melakukan modeling dapat melakukan visualisasi score dari metrik yang telah dihitung pada fase training.
-
-> Model berhasil mendapatkan *RMSE* pada data training yaitu 0.3446 dan pada validasi yaitu 0.3434. Hasil tersebut cukup bagus untuk sistem rekomendasi.
-
 Setelah semua tahap telah terselesaikan maka akan tiba saatnya membuat *testing* rekomendasi untuk salah satu pengguna. misalkan untuk pengguna dengan *User_Id* 201. Berikut adalah rekomendasi yang akan diberikan:
 
 | Showing recommendations for users: 201     	|
@@ -418,8 +434,13 @@ Setelah semua tahap telah terselesaikan maka akan tiba saatnya membuat *testing*
 | Museum Gedung Sate : Bandung               	|
 | Monumen Bandung Lautan Api : Bandung       	|
 
+## Evaluation
 
-Kesimpulan: Proyek ini berhasil mencapai goals yang diinginkan yaitu memberikan rekomendasi tempat wisata yang relevan kepada pengguna dengan teknik *content-based filtering* dan *collaborative filtering* yang hasilnya sangat baik. untuk hasil yang didapat dengan teknik *collaborative filtering* masih dapat untuk dilakukan improve dengan berbagai cara yaitu dengan melakukan hyperparameter tuning.
+Setelah melakukan modeling dapat melakukan visualisasi score dari metrik yang telah dihitung pada fase training.
+
+> Model berhasil mendapatkan *RMSE* pada data training yaitu 0.3446 dan pada validasi yaitu 0.3434. Hasil tersebut cukup bagus untuk sistem rekomendasi.
+
+Kesimpulan: Pulau jawa merupakan pulau yang sering untuk dikunjungi turis dan untuk memudahkan turis dalam memilih tempat wisata apa saja yang mungkin relevan dengan pengguna tersebut berdasarkan kota yang pernah dikunjungi menggunakan teknik *content-based filtering* atau berdasarkan *preference* pengguna lain yang menyukai tempat wisata tersebut menggunakan teknik *collaborative filtering*. Proyek ini berhasil memberikan rekomendasi kepada pengguna yang mungkin relevan dengannya dan akurasi yang didapat pada teknik *content-based filtering* yaitu 1.00 atau sangat akurat lalu pada teknik *collaborative filtering* yaitu 0.34 yang mana akurasi tersebut sudah cukup baik.
 
 Reference: [(Charilaos Zisopoulos, Savvas Karagiannidis, Georgios Demirtsoglou and Stefanos Antaris, 2008)](https://www.researchgate.net/publication/236895069_Content-Based_Recommendation_Systems) dan [(Hael Al-bashiri, Mansoor Abdullateef Abdulgabber, Awanis Romli and Fadhl Hujainah, 2017)](https://www.researchgate.net/publication/320761149_Collaborative_Filtering_Recommender_System_Overview_and_Challenges#:~:text=This%20paper%20is%20to%20present%20an%20overview%20of,help%20users%20to%20overcome%20the%20information%20overload%20issue.), 
 
