@@ -97,6 +97,8 @@ Dataset ini memiiliki total 300 pengguna berbeda dan total 437 tempat wisata ber
 
 ### tourism_with_id.csv
 
+#### Exploratory Data Analysis:
+
 Membaca dataset dan menampilkan 3 data random:
 
 |     	| Place_Id 	|                        Place_Name 	|                                       Description 	|      Category 	|     City 	| Price 	| Rating 	| Time_Minutes 	|                                      Coordinate 	|      Lat 	|       Long 	| Unnamed: 11 	| Unnamed: 12 	|
