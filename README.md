@@ -343,7 +343,7 @@ Data *Surabaya North Quay*:
 |------:	|---------:	|--------------------:	|--------------:	|---------:	|------:	|
 |  404  	|      405 	| Surabaya North Quay 	| Taman Hiburan 	| Surabaya 	| 50000 	|
 
-## Evaluation
+### Evaluation
 
 Berdasarkan rekomendasi pada tahap *modeling dan results* dapat dilihat bahwa seluruh rekomendasi yang diberikan oleh model adalah yang berlokasi di kota *Surabaya* dan lokasi tersebut sesuai dengan data lokasi tempat wisata *Surabaya North Quay* yang diasumsikan sebagai data tempat wisata yang dikunjungi sebelumnya oleh pengguna.
 
@@ -434,7 +434,7 @@ Setelah semua tahap telah terselesaikan maka akan tiba saatnya membuat *testing*
 | Museum Gedung Sate : Bandung               	|
 | Monumen Bandung Lautan Api : Bandung       	|
 
-## Evaluation
+### Evaluation
 
 Setelah melakukan modeling dapat melakukan visualisasi score dari metrik yang telah dihitung pada fase training.
 
