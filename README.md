@@ -49,13 +49,13 @@ Dataset wisata pulau jawa pada dataset *tourism_with_id.csv*:
 - Lat: Latitude tempat wisata tersebut.	
 - Long: Longitude tempat wisata tersebut.
 
-#### tourism_rating.csv
+### tourism_rating.csv
 
 Langkah pertama import *library* yang dibutuhkan untuk kasus kali ini:
 
 *Library* yang akan diimport adalah *library* yang berhubungan untuk memanipulasi data, perhitungan matriks, teknik fitur ekstraksi, teknik untuk mencari hubungan antara fitur, menampilkan seluruh angka yang berada dibelakang koma, data visualisasi, *preprocessing*, model *machine learning* dan mematikan warning yang didapat setelah menjalankan code. 
 
-### Exploratory Data Analysis:
+#### Exploratory Data Analysis:
 
 Selanjutnya membaca dataset dan menampilkan 3 data random:
 
@@ -93,7 +93,7 @@ Dataset ini memiiliki total 300 pengguna berbeda dan total 437 tempat wisata ber
 - Dapat dilihat bahwa rata-rata rating untuk tempat wisata sekitar 3.
 - Dapat dilihat juga bahwa rating terendah untuk tempat wisata yaitu 1 dan rating tertinggi yaitu 5.
 
-#### tourism_with_id.csv
+### tourism_with_id.csv
 
 Membaca dataset dan menampilkan 3 data random:
 
