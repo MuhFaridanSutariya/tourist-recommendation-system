@@ -282,7 +282,7 @@ Kekurangan *content-based filtering*:
 - *Scalability*. Ketika terdapat item baru yang masuk kedalam daftar item maka harus diberi fitur yang digunakan sebagai acuan content based filtering agar model dapat merekomendasikan secara tepat
 - *New user*. ketika data disuatu *profil* tidak banyak dan lengkap maka rekomendasi yang akan dihasilkan akan tidak akurat atau relevan.
 
-Melakukan pemberian bobot pada fitur lokasi didataset menggunakan TF-IDF Vectorizer pada *library* sklearn. 
+Langkah pertama yaitu melakukan pemberian bobot pada fitur lokasi didataset menggunakan TF-IDF Vectorizer pada *library* sklearn. 
 
 Selanjutnya setelah dilakukan perhitungan idf dapat dilanjutkan ke proses transformasi ke dalam bentuk matriks
 
