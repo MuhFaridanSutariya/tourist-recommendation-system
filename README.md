@@ -168,9 +168,9 @@ Gambar 3. Distribusi enam kategori tempat wisata berdasarkan kotanya
 - Dapat dilihat juga bahwa biaya masuk tempat wisata tersebut memiliki range harga sekitar 0 - 900k.
 - Untuk kolom Unnamed: 11 dan Unnamed: 12 adalah kolom noise yang akan dibuang saat fase *data cleasing* 
 
-### Data Preparation
+## Data Preparation
 
-## Content-based filtering
+### Content-based filtering
 
 Melihat *missing value* pada dataset:
 
@@ -197,7 +197,7 @@ Melihat *missing value* pada dataset:
 
 - menghapus kolom Coordinate, Lat, Long, Unnamed: 11, Unnamed: 12, Time_Minutes, Rating dan Description karena tidak berguna dan dapat mengganggu pada saat dilakukan training.
 
-## Collaborative filtering
+### Collaborative filtering
 
 #### tourism_rating.csv
 
