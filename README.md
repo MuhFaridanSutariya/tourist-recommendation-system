@@ -29,6 +29,8 @@ Bagian ini akan menjelaskan proses klarifikasi masalah.
 ## Data Understanding
 Link download dataset: https://www.kaggle.com/datasets/aprabowo/indonesia-tourism-destination  
 
+Terdapat dua file yang akan digunakan yaitu *tourism_rating.csv* dan *tourism_with_id.csv*.
+
 ### Variabel-variabel pada dataset adalah sebagai berikut:
 
 Dataset wisata pulau jawa pada dataset *tourism_rating.csv*:
